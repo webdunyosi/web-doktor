@@ -80,7 +80,7 @@ const ADMIN_NAV = [
   },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, onClose }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -101,10 +101,16 @@ export default function Sidebar() {
     'from-sky-400 to-cyan-500';
 
   return (
-    <aside className="w-64 flex-shrink-0 flex flex-col min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
+    <aside className={`
+      fixed inset-y-0 left-0 z-40 w-64 flex-shrink-0 flex flex-col min-h-screen
+      bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900
+      transform transition-transform duration-300 ease-in-out
+      md:static md:translate-x-0
+      ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+    `}>
       {/* Logo */}
-      <div className="px-5 py-6">
-        <Link to="/dashboard" className="flex items-center gap-3">
+      <div className="px-5 py-6 flex items-center justify-between">
+        <Link to="/dashboard" onClick={onClose} className="flex items-center gap-3">
           <div className="w-10 h-10 bg-gradient-to-br from-sky-400 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg shadow-sky-500/30">
             <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -116,6 +122,16 @@ export default function Sidebar() {
             <p className="text-slate-400 text-xs mt-0.5">Tibbiy portal</p>
           </div>
         </Link>
+        {/* Close button (mobile only) */}
+        <button
+          onClick={onClose}
+          className="md:hidden w-8 h-8 flex items-center justify-center rounded-xl text-slate-400 hover:text-slate-200 hover:bg-slate-700 transition-all"
+          aria-label="Yopish"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
 
       {/* Divider */}
@@ -130,6 +146,7 @@ export default function Sidebar() {
             <Link
               key={to}
               to={to}
+              onClick={onClose}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
                 active
                   ? 'bg-gradient-to-r from-sky-500 to-cyan-500 text-white shadow-lg shadow-sky-500/25'
