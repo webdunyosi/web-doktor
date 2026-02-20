@@ -25,7 +25,7 @@ export default function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1.5">
+        <label className="block text-sm font-medium text-slate-300 mb-1.5">
           Foydalanuvchi nomi
         </label>
         <input
@@ -34,11 +34,11 @@ export default function LoginForm() {
           value={form.username}
           onChange={(e) => setForm({ ...form, username: e.target.value })}
           placeholder="demo"
-          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all"
+          className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 text-white placeholder-slate-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all"
         />
       </div>
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1.5">
+        <label className="block text-sm font-medium text-slate-300 mb-1.5">
           Parol
         </label>
         <input
@@ -47,12 +47,12 @@ export default function LoginForm() {
           value={form.password}
           onChange={(e) => setForm({ ...form, password: e.target.value })}
           placeholder="••••••••"
-          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all"
+          className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 text-white placeholder-slate-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all"
         />
       </div>
 
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
+        <div className="bg-red-900/30 border border-red-700/50 text-red-400 px-4 py-3 rounded-xl text-sm">
           {error}
         </div>
       )}
@@ -60,14 +60,14 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-sky-500 hover:bg-sky-600 disabled:bg-sky-300 text-white font-semibold py-3 rounded-xl transition-colors"
+        className="w-full bg-sky-500 hover:bg-sky-600 disabled:bg-sky-800 text-white font-semibold py-3 rounded-xl transition-colors"
       >
         {loading ? 'Kirish...' : 'Kirish'}
       </button>
 
-      <p className="text-center text-sm text-gray-600">
+      <p className="text-center text-sm text-slate-400">
         Hisobingiz yo'qmi?{' '}
-        <Link to="/register" className="text-sky-600 hover:text-sky-700 font-medium">
+        <Link to="/register" className="text-sky-400 hover:text-sky-300 font-medium">
           Ro'yxatdan o'ting
         </Link>
       </p>
