@@ -45,60 +45,74 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="w-64 flex-shrink-0 bg-white border-r border-gray-200 flex flex-col min-h-screen">
+    <aside className="w-64 flex-shrink-0 flex flex-col min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       {/* Logo */}
-      <div className="px-6 py-5 border-b border-gray-100">
-        <Link to="/dashboard" className="flex items-center gap-2">
-          <div className="w-9 h-9 bg-sky-500 rounded-xl flex items-center justify-center">
-            <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="px-5 py-6">
+        <Link to="/dashboard" className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-gradient-to-br from-sky-400 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg shadow-sky-500/30">
+            <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                 d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
           </div>
-          <span className="font-bold text-gray-900 text-lg">Web Doktor</span>
+          <div>
+            <span className="font-bold text-white text-lg leading-none">Web Doktor</span>
+            <p className="text-slate-400 text-xs mt-0.5">Tibbiy portal</p>
+          </div>
         </Link>
       </div>
 
+      {/* Divider */}
+      <div className="mx-5 h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent mb-4" />
+
       {/* Navigation */}
-      <nav className="flex-1 px-3 py-4 space-y-1">
+      <nav className="flex-1 px-3 space-y-1">
+        <p className="px-3 pb-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">Menyu</p>
         {NAV_ITEMS.map(({ to, label, icon }) => {
           const active = location.pathname === to;
           return (
             <Link
               key={to}
               to={to}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
                 active
-                  ? 'bg-sky-500 text-white shadow-sm'
-                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                  ? 'bg-gradient-to-r from-sky-500 to-cyan-500 text-white shadow-lg shadow-sky-500/25'
+                  : 'text-slate-400 hover:text-white hover:bg-white/10'
               }`}
             >
-              <span className={active ? 'text-white' : 'text-gray-400'}>{icon}</span>
-              {label}
+              <span className={`flex-shrink-0 ${active ? 'text-white' : 'text-slate-500'}`}>{icon}</span>
+              <span>{label}</span>
+              {active && (
+                <span className="ml-auto w-1.5 h-1.5 rounded-full bg-white opacity-80" />
+              )}
             </Link>
           );
         })}
       </nav>
 
+      {/* Divider */}
+      <div className="mx-5 h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent mt-4 mb-3" />
+
       {/* User info + logout */}
-      <div className="px-3 py-4 border-t border-gray-100 space-y-3">
+      <div className="px-3 py-4 space-y-2">
         {/* Avatar + name */}
-        <div className="flex items-center gap-3 px-3">
-          <div className="w-9 h-9 bg-gradient-to-br from-sky-400 to-sky-600 rounded-xl flex items-center justify-center flex-shrink-0">
+        <div className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-white/5 border border-white/10">
+          <div className="w-9 h-9 bg-gradient-to-br from-sky-400 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md shadow-sky-500/20">
             <span className="text-sm font-bold text-white">
               {user?.fullName?.charAt(0)?.toUpperCase()}
             </span>
           </div>
-          <div className="min-w-0">
-            <p className="text-sm font-semibold text-gray-900 truncate">{user?.fullName}</p>
-            <p className="text-xs text-gray-400 truncate">@{user?.username}</p>
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-semibold text-white truncate">{user?.fullName}</p>
+            <p className="text-xs text-slate-400 truncate">@{user?.username}</p>
           </div>
+          <div className="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0 ring-2 ring-emerald-400/30" />
         </div>
 
         {/* Logout */}
         <button
           onClick={handleLogout}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-all duration-200"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
