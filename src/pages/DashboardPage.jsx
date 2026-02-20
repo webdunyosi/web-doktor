@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { getAppointments } from '../utils/storage';
-import Header from '../components/layout/Header';
+import Layout from '../components/layout/Layout';
 
 export default function DashboardPage() {
   const { user } = useAuth();
@@ -10,9 +10,8 @@ export default function DashboardPage() {
   const upcoming = appointments.filter((a) => a.date >= today);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Layout>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         {/* Welcome banner */}
         <div className="bg-gradient-to-r from-sky-500 to-sky-600 rounded-2xl p-6 mb-8 text-white">
           <h1 className="text-2xl font-bold mb-1">Xush kelibsiz, {user.fullName}! 👋</h1>
@@ -99,7 +98,7 @@ export default function DashboardPage() {
           </div>
         )}
       </main>
-    </div>
+    </Layout>
   );
 }
 
