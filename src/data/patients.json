@@ -1,0 +1,11 @@
+[
+  {
+    "id": "1",
+    "username": "demo",
+    "password": "demo123",
+    "fullName": "Demo Foydalanuvchi",
+    "phone": "+998901234567",
+    "role": "patient",
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  }
+]
