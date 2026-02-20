@@ -5,6 +5,7 @@ const PAGE_TITLES = {
   '/dashboard': { title: 'Bosh sahifa', subtitle: 'Umumiy ko\'rinish' },
   '/booking': { title: 'Qabulga yozilish', subtitle: 'Shifokor tanlash va vaqt band qilish' },
   '/profile': { title: 'Profil', subtitle: 'Shaxsiy ma\'lumotlar' },
+  '/admin': { title: 'Admin paneli', subtitle: 'Tizim boshqaruvi' },
 };
 
 export default function Header() {

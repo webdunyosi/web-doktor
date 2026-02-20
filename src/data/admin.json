@@ -1,0 +1,11 @@
+[
+  {
+    "id": "admin1",
+    "username": "admin",
+    "password": "admin123",
+    "fullName": "Administrator",
+    "phone": "+998900000000",
+    "role": "admin",
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  }
+]
