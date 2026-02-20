@@ -31,6 +31,11 @@ export default function LoginPage() {
               <p className="text-xs text-slate-300">Login: <span className="font-mono font-semibold text-emerald-400">dr.karimov</span></p>
               <p className="text-xs text-slate-300">Parol: <span className="font-mono font-semibold text-emerald-400">doctor123</span></p>
             </div>
+            <div className="border-t border-slate-600 pt-3">
+              <p className="text-xs text-slate-400 font-medium mb-1">🛡️ Admin:</p>
+              <p className="text-xs text-slate-300">Login: <span className="font-mono font-semibold text-violet-400">admin</span></p>
+              <p className="text-xs text-slate-300">Parol: <span className="font-mono font-semibold text-violet-400">admin123</span></p>
+            </div>
           </div>
         </div>
       </div>

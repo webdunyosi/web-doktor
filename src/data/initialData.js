@@ -1,8 +1,12 @@
 import doctorsData from './doctors.json';
 import patientsData from './patients.json';
+// NOTE: passwords are stored in plain text for demo purposes only.
+// In a production system, always hash passwords (e.g. with bcrypt).
+import adminData from './admin.json';
 
 export const INITIAL_DOCTORS = doctorsData;
 export const INITIAL_PATIENTS = patientsData;
+export const INITIAL_ADMIN = adminData;
 
 export const DEMO_USER = patientsData[0];
 
