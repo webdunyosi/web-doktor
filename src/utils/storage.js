@@ -1,4 +1,4 @@
-import { DEMO_USER } from '../data/initialData';
+import { INITIAL_DOCTORS, INITIAL_PATIENTS } from '../data/initialData';
 
 const USERS_KEY = 'wd_users';
 const APPOINTMENTS_KEY = 'wd_appointments';
@@ -15,6 +15,15 @@ export function saveUser(user) {
   const users = getUsers();
   users.push(user);
   localStorage.setItem(USERS_KEY, JSON.stringify(users));
+}
+
+export function updateUser(updatedUser) {
+  const users = getUsers();
+  const idx = users.findIndex((u) => u.id === updatedUser.id);
+  if (idx !== -1) {
+    users[idx] = updatedUser;
+    localStorage.setItem(USERS_KEY, JSON.stringify(users));
+  }
 }
 
 export function findUser(username, password) {
@@ -48,6 +57,7 @@ export function isSlotTaken(doctorId, date, time) {
 export function initializeStorage() {
   const users = getUsers();
   if (users.length === 0) {
-    localStorage.setItem(USERS_KEY, JSON.stringify([DEMO_USER]));
+    const allUsers = [...INITIAL_PATIENTS, ...INITIAL_DOCTORS];
+    localStorage.setItem(USERS_KEY, JSON.stringify(allUsers));
   }
 }

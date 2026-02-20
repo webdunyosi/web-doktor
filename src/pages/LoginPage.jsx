@@ -20,10 +20,17 @@ export default function LoginPage() {
           <h2 className="text-xl font-semibold text-white mb-6">Tizimga kirish</h2>
           <LoginForm />
 
-          <div className="mt-6 p-4 bg-slate-700/50 rounded-xl">
-            <p className="text-xs text-slate-400 font-medium mb-1">Demo hisob:</p>
-            <p className="text-xs text-slate-300">Login: <span className="font-mono font-semibold text-sky-400">demo</span></p>
-            <p className="text-xs text-slate-300">Parol: <span className="font-mono font-semibold text-sky-400">demo123</span></p>
+          <div className="mt-6 p-4 bg-slate-700/50 rounded-xl space-y-3">
+            <div>
+              <p className="text-xs text-slate-400 font-medium mb-1">🧑 Demo bemor:</p>
+              <p className="text-xs text-slate-300">Login: <span className="font-mono font-semibold text-sky-400">demo</span></p>
+              <p className="text-xs text-slate-300">Parol: <span className="font-mono font-semibold text-sky-400">demo123</span></p>
+            </div>
+            <div className="border-t border-slate-600 pt-3">
+              <p className="text-xs text-slate-400 font-medium mb-1">👨‍⚕️ Demo shifokor:</p>
+              <p className="text-xs text-slate-300">Login: <span className="font-mono font-semibold text-emerald-400">dr.karimov</span></p>
+              <p className="text-xs text-slate-300">Parol: <span className="font-mono font-semibold text-emerald-400">doctor123</span></p>
+            </div>
           </div>
         </div>
       </div>

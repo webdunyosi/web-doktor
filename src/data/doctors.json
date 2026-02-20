@@ -1,0 +1,32 @@
+[
+  {
+    "id": "d1",
+    "username": "dr.karimov",
+    "password": "doctor123",
+    "fullName": "Dr. Alisher Karimov",
+    "specialty": "Terapevt",
+    "phone": "+998901111111",
+    "role": "doctor",
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "d2",
+    "username": "dr.umarova",
+    "password": "doctor123",
+    "fullName": "Dr. Malika Umarova",
+    "specialty": "Kardiolog",
+    "phone": "+998902222222",
+    "role": "doctor",
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "d3",
+    "username": "dr.nazarov",
+    "password": "doctor123",
+    "fullName": "Dr. Sardor Nazarov",
+    "specialty": "Nevropatolog",
+    "phone": "+998903333333",
+    "role": "doctor",
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  }
+]

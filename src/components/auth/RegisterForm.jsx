@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 export default function RegisterForm() {
   const { register } = useAuth();
   const navigate = useNavigate();
-  const [form, setForm] = useState({ fullName: '', phone: '', username: '', password: '' });
+  const [form, setForm] = useState({ fullName: '', phone: '', username: '', password: '', role: 'patient', specialty: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -17,7 +17,9 @@ export default function RegisterForm() {
       return;
     }
     setLoading(true);
-    const result = await register(form);
+    const userData = { ...form };
+    if (userData.role !== 'doctor') delete userData.specialty;
+    const result = await register(userData);
     setLoading(false);
     if (result.success) {
       navigate('/');
@@ -42,8 +44,30 @@ export default function RegisterForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {field('To\'liq ism', 'fullName', 'text', 'Ism Familiya')}
+      {/* Role selector */}
+      <div>
+        <label className="block text-sm font-medium text-slate-300 mb-1.5">Rol</label>
+        <div className="grid grid-cols-2 gap-2">
+          {[{ value: 'patient', label: '🧑 Bemor' }, { value: 'doctor', label: '👨‍⚕️ Shifokor' }].map((opt) => (
+            <button
+              key={opt.value}
+              type="button"
+              onClick={() => setForm({ ...form, role: opt.value })}
+              className={`py-2.5 rounded-xl border text-sm font-medium transition-all ${
+                form.role === opt.value
+                  ? 'bg-sky-500 border-sky-500 text-white'
+                  : 'bg-slate-700/50 border-slate-600 text-slate-300 hover:border-sky-500'
+              }`}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {field("To'liq ism", 'fullName', 'text', 'Ism Familiya')}
       {field('Telefon raqam', 'phone', 'tel', '+998901234567')}
+      {form.role === 'doctor' && field('Mutaxassislik', 'specialty', 'text', 'Terapevt, Kardiolog...')}
       {field('Foydalanuvchi nomi', 'username', 'text', 'username')}
       {field('Parol', 'password', 'password', '••••••••')}
 
