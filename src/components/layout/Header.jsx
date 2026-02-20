@@ -8,7 +8,7 @@ const PAGE_TITLES = {
   '/admin': { title: 'Admin paneli', subtitle: 'Tizim boshqaruvi' },
 };
 
-export default function Header() {
+export default function Header({ onMenuToggle }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -29,7 +29,18 @@ export default function Header() {
 
   return (
     <header className="bg-slate-800/80 backdrop-blur-md border-b border-slate-700 sticky top-0 z-40 shadow-sm">
-      <div className="px-6 h-16 flex items-center justify-between gap-4">
+      <div className="px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+        {/* Hamburger menu button (mobile only) */}
+        <button
+          onClick={onMenuToggle}
+          className="md:hidden w-9 h-9 flex items-center justify-center rounded-xl text-slate-400 hover:text-slate-200 hover:bg-slate-700 transition-all duration-200 flex-shrink-0"
+          aria-label="Menyuni ochish"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
         {/* Page title */}
         <div className="min-w-0">
           <h1 className="text-base font-bold text-white leading-tight truncate">{page.title}</h1>

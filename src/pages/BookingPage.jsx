@@ -25,7 +25,7 @@ export default function BookingPage() {
 
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Doctor list */}
-          <div className="lg:w-72 flex-shrink-0">
+          <div className="lg:w-72 shrink-0">
             <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">
               Shifokorlar
             </h2>
@@ -41,7 +41,7 @@ export default function BookingPage() {
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
                       selectedDoctor.id === doc.id ? 'bg-white/20' : 'bg-sky-500/10'
                     }`}>
                       <svg className={`w-5 h-5 ${selectedDoctor.id === doc.id ? 'text-white' : 'text-sky-400'}`}
