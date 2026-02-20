@@ -35,11 +35,11 @@ export default function SlotGrid({ doctor, onSelectSlot }) {
       <table className="w-full border-collapse">
         <thead>
           <tr>
-            <th className="w-16 p-2 text-xs text-gray-500 font-medium text-left">Vaqt</th>
+            <th className="w-16 p-2 text-xs text-slate-500 font-medium text-left">Vaqt</th>
             {days.map((d) => (
               <th key={formatDate(d)} className="p-2 text-center min-w-[80px]">
-                <div className="text-xs text-gray-500 font-medium">{DAY_NAMES[d.getDay()]}</div>
-                <div className="text-sm font-semibold text-gray-800">
+                <div className="text-xs text-slate-500 font-medium">{DAY_NAMES[d.getDay()]}</div>
+                <div className="text-sm font-semibold text-slate-200">
                   {d.getDate()} {MONTH_NAMES[d.getMonth()]}
                 </div>
               </th>
@@ -48,8 +48,8 @@ export default function SlotGrid({ doctor, onSelectSlot }) {
         </thead>
         <tbody>
           {TIME_SLOTS.map((time) => (
-            <tr key={time} className="border-t border-gray-100">
-              <td className="p-2 text-xs font-semibold text-gray-600 whitespace-nowrap">{time}</td>
+            <tr key={time} className="border-t border-slate-700">
+              <td className="p-2 text-xs font-semibold text-slate-400 whitespace-nowrap">{time}</td>
               {days.map((d) => {
                 const date = formatDate(d);
                 const taken = isSlotTaken(doctor.id, date, time);
@@ -60,8 +60,8 @@ export default function SlotGrid({ doctor, onSelectSlot }) {
                       onClick={() => onSelectSlot({ doctor, date, time })}
                       className={`w-full py-2 px-1 rounded-lg text-xs font-medium transition-all ${
                         taken
-                          ? 'bg-red-100 text-red-500 cursor-not-allowed'
-                          : 'bg-emerald-100 text-emerald-700 hover:bg-emerald-500 hover:text-white cursor-pointer'
+                          ? 'bg-red-900/40 text-red-400 cursor-not-allowed'
+                          : 'bg-emerald-900/40 text-emerald-400 hover:bg-emerald-500 hover:text-white cursor-pointer'
                       }`}
                     >
                       {taken ? 'Band' : "Bo'sh"}

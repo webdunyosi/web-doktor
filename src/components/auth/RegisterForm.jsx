@@ -28,14 +28,14 @@ export default function RegisterForm() {
 
   const field = (label, key, type = 'text', placeholder = '') => (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-1.5">{label}</label>
+      <label className="block text-sm font-medium text-slate-300 mb-1.5">{label}</label>
       <input
         type={type}
         required
         value={form[key]}
         onChange={(e) => setForm({ ...form, [key]: e.target.value })}
         placeholder={placeholder}
-        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all"
+        className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 text-white placeholder-slate-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all"
       />
     </div>
   );
@@ -48,7 +48,7 @@ export default function RegisterForm() {
       {field('Parol', 'password', 'password', '••••••••')}
 
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
+        <div className="bg-red-900/30 border border-red-700/50 text-red-400 px-4 py-3 rounded-xl text-sm">
           {error}
         </div>
       )}
@@ -56,14 +56,14 @@ export default function RegisterForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-sky-500 hover:bg-sky-600 disabled:bg-sky-300 text-white font-semibold py-3 rounded-xl transition-colors"
+        className="w-full bg-sky-500 hover:bg-sky-600 disabled:bg-sky-800 text-white font-semibold py-3 rounded-xl transition-colors"
       >
         {loading ? "Ro'yxatdan o'tilmoqda..." : "Ro'yxatdan o'tish"}
       </button>
 
-      <p className="text-center text-sm text-gray-600">
+      <p className="text-center text-sm text-slate-400">
         Hisobingiz bormi?{' '}
-        <Link to="/" className="text-sky-600 hover:text-sky-700 font-medium">
+        <Link to="/" className="text-sky-400 hover:text-sky-300 font-medium">
           Kirish
         </Link>
       </p>
