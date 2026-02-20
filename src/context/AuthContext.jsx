@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { findUser, saveUser, getUsers } from '../utils/storage';
+import { findUser, saveUser, updateUser, getUsers } from '../utils/storage';
 import { sendToTelegram } from '../utils/telegram';
 
 const AuthContext = createContext(null);
@@ -41,6 +41,7 @@ export function AuthProvider({ children }) {
     }
     const newUser = {
       id: Date.now().toString(),
+      role: 'patient',
       ...userData,
       createdAt: new Date().toISOString(),
     };
@@ -57,8 +58,14 @@ export function AuthProvider({ children }) {
     return { success: true };
   }
 
+  function updateProfile(updatedData) {
+    const updated = { ...user, ...updatedData };
+    updateUser(updated);
+    setUser(updated);
+  }
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, register }}>
+    <AuthContext.Provider value={{ user, login, logout, register, updateProfile }}>
       {children}
     </AuthContext.Provider>
   );
