@@ -1,0 +1,51 @@
+import { DEMO_USER } from '../data/initialData';
+
+const USERS_KEY = 'wd_users';
+const APPOINTMENTS_KEY = 'wd_appointments';
+
+export function getUsers() {
+  try {
+    return JSON.parse(localStorage.getItem(USERS_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+export function saveUser(user) {
+  const users = getUsers();
+  users.push(user);
+  localStorage.setItem(USERS_KEY, JSON.stringify(users));
+}
+
+export function findUser(username, password) {
+  return getUsers().find(
+    (u) => u.username === username && u.password === password
+  ) || null;
+}
+
+export function getAppointments() {
+  try {
+    return JSON.parse(localStorage.getItem(APPOINTMENTS_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+export function saveAppointment(appointment) {
+  const appointments = getAppointments();
+  appointments.push(appointment);
+  localStorage.setItem(APPOINTMENTS_KEY, JSON.stringify(appointments));
+}
+
+export function isSlotTaken(doctorId, date, time) {
+  return getAppointments().some(
+    (a) => a.doctorId === doctorId && a.date === date && a.time === time
+  );
+}
+
+export function initializeStorage() {
+  const users = getUsers();
+  if (users.length === 0) {
+    localStorage.setItem(USERS_KEY, JSON.stringify([DEMO_USER]));
+  }
+}
