@@ -43,13 +43,13 @@ export default function PaymentForm({ appointment, onClose }) {
   if (done) {
     return (
       <div className="text-center py-6 space-y-4">
-        <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto">
-          <svg className="w-8 h-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="w-16 h-16 bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto">
+          <svg className="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="text-lg font-semibold text-gray-900">Muvaffaqiyatli!</h3>
-        <p className="text-sm text-gray-600">
+        <h3 className="text-lg font-semibold text-white">Muvaffaqiyatli!</h3>
+        <p className="text-sm text-slate-400">
           Chek yuborildi. Tez orada shifokor siz bilan bog'lanadi.
         </p>
         <button
@@ -78,25 +78,25 @@ export default function PaymentForm({ appointment, onClose }) {
         <p className="text-xs opacity-80 mt-2">Karta egasi: {PAYMENT_CARD_OWNER}</p>
       </div>
 
-      <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
+      <div className="bg-amber-900/20 border border-amber-700/30 rounded-xl p-4 text-sm text-amber-300">
         ⚠️ Yuqoridagi kartaga to'lov qiling va chek (screenshot) yuboring.
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+          <label className="block text-sm font-medium text-slate-300 mb-1.5">
             To'lov cheki (rasm)
           </label>
-          <label className="flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-sky-400 hover:bg-sky-50 transition-all">
+          <label className="flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-slate-600 rounded-xl cursor-pointer hover:border-sky-500 hover:bg-sky-900/10 transition-all">
             {preview ? (
               <img src={preview} alt="preview" className="h-full w-full object-contain rounded-xl p-1" />
             ) : (
               <div className="text-center">
-                <svg className="w-8 h-8 text-gray-400 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-8 h-8 text-slate-500 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
                     d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
-                <p className="text-sm text-gray-500">Rasmni tanlash uchun bosing</p>
+                <p className="text-sm text-slate-400">Rasmni tanlash uchun bosing</p>
               </div>
             )}
             <input type="file" accept="image/*" className="hidden" onChange={handleFile} />
@@ -107,14 +107,14 @@ export default function PaymentForm({ appointment, onClose }) {
           <button
             type="button"
             onClick={onClose}
-            className="flex-1 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors font-medium"
+            className="flex-1 py-3 border border-slate-600 text-slate-300 rounded-xl hover:bg-slate-700 transition-colors font-medium"
           >
             Bekor qilish
           </button>
           <button
             type="submit"
             disabled={!file || loading}
-            className="flex-1 py-3 bg-sky-500 hover:bg-sky-600 disabled:bg-sky-300 text-white rounded-xl transition-colors font-semibold"
+            className="flex-1 py-3 bg-sky-500 hover:bg-sky-600 disabled:bg-sky-900/50 disabled:text-slate-400 text-white rounded-xl transition-colors font-semibold"
           >
             {loading ? 'Yuborilmoqda...' : 'Chekni yuborish'}
           </button>
