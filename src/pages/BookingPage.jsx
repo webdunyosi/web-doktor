@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { DOCTORS } from '../data/initialData';
-import Header from '../components/layout/Header';
+import Layout from '../components/layout/Layout';
 import SlotGrid from '../components/booking/SlotGrid';
 import BookingModal from '../components/booking/BookingModal';
 
@@ -25,9 +25,8 @@ export default function BookingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Layout>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         <h1 className="text-2xl font-bold text-gray-900 mb-6">Qabulga yozilish</h1>
 
         <div className="flex flex-col lg:flex-row gap-6">
@@ -110,6 +109,6 @@ export default function BookingPage() {
       {selectedSlot && (
         <BookingModal slot={selectedSlot} onClose={handleCloseModal} />
       )}
-    </div>
+    </Layout>
   );
 }

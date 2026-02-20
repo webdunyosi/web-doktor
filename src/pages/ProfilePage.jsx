@@ -1,6 +1,6 @@
 import { useAuth } from '../context/AuthContext';
 import { getAppointments } from '../utils/storage';
-import Header from '../components/layout/Header';
+import Layout from '../components/layout/Layout';
 
 export default function ProfilePage() {
   const { user } = useAuth();
@@ -15,9 +15,8 @@ export default function ProfilePage() {
   const today = new Date().toISOString().split('T')[0];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+    <Layout>
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6 w-full">
         {/* User info card */}
         <div className="bg-white border border-gray-200 rounded-2xl p-6">
           <div className="flex items-center gap-4">
@@ -98,7 +97,7 @@ export default function ProfilePage() {
           )}
         </div>
       </main>
-    </div>
+    </Layout>
   );
 }
 
