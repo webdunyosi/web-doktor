@@ -18,6 +18,8 @@ export function saveUser(user) {
 }
 
 export function findUser(username, password) {
+  // NOTE: passwords are stored in plain text for demo purposes only.
+  // In a production system, always hash passwords (e.g. with bcrypt).
   return getUsers().find(
     (u) => u.username === username && u.password === password
   ) || null;

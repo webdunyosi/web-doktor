@@ -6,7 +6,11 @@ export default function ProfilePage() {
   const { user } = useAuth();
   const appointments = getAppointments()
     .filter((a) => a.userId === user.id)
-    .sort((a, b) => (a.date + a.time > b.date + b.time ? -1 : 1));
+    .sort((a, b) => {
+      const da = new Date(`${a.date}T${a.time}`);
+      const db = new Date(`${b.date}T${b.time}`);
+      return db - da;
+    });
 
   const today = new Date().toISOString().split('T')[0];
 
