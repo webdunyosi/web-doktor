@@ -1,7 +1,7 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
-const NAV_ITEMS = [
+const PATIENT_NAV = [
   {
     to: '/dashboard',
     label: 'Bosh sahifa',
@@ -34,6 +34,52 @@ const NAV_ITEMS = [
   },
 ];
 
+const DOCTOR_NAV = [
+  {
+    to: '/dashboard',
+    label: 'Bosh sahifa',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+    ),
+  },
+  {
+    to: '/profile',
+    label: 'Bemorlar jadvali',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+          d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+    ),
+  },
+];
+
+const ADMIN_NAV = [
+  {
+    to: '/dashboard',
+    label: 'Bosh sahifa',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+    ),
+  },
+  {
+    to: '/admin',
+    label: 'Admin paneli',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    ),
+  },
+];
+
 export default function Sidebar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -43,6 +89,16 @@ export default function Sidebar() {
     logout();
     navigate('/');
   }
+
+  const navItems =
+    user?.role === 'admin' ? ADMIN_NAV :
+    user?.role === 'doctor' ? DOCTOR_NAV :
+    PATIENT_NAV;
+
+  const avatarColor =
+    user?.role === 'admin' ? 'from-violet-400 to-violet-600' :
+    user?.role === 'doctor' ? 'from-emerald-400 to-emerald-600' :
+    'from-sky-400 to-cyan-500';
 
   return (
     <aside className="w-64 flex-shrink-0 flex flex-col min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
@@ -68,7 +124,7 @@ export default function Sidebar() {
       {/* Navigation */}
       <nav className="flex-1 px-3 space-y-1">
         <p className="px-3 pb-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">Menyu</p>
-        {NAV_ITEMS.map(({ to, label, icon }) => {
+        {navItems.map(({ to, label, icon }) => {
           const active = location.pathname === to;
           return (
             <Link
@@ -97,7 +153,7 @@ export default function Sidebar() {
       <div className="px-3 py-4 space-y-2">
         {/* Avatar + name */}
         <div className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-white/5 border border-white/10">
-          <div className="w-9 h-9 bg-gradient-to-br from-sky-400 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md shadow-sky-500/20">
+          <div className={`w-9 h-9 bg-gradient-to-br ${avatarColor} rounded-xl flex items-center justify-center flex-shrink-0 shadow-md`}>
             <span className="text-sm font-bold text-white">
               {user?.fullName?.charAt(0)?.toUpperCase()}
             </span>

@@ -1,4 +1,4 @@
-import { INITIAL_DOCTORS, INITIAL_PATIENTS } from '../data/initialData';
+import { INITIAL_DOCTORS, INITIAL_PATIENTS, INITIAL_ADMIN } from '../data/initialData';
 
 const USERS_KEY = 'wd_users';
 const APPOINTMENTS_KEY = 'wd_appointments';
@@ -57,7 +57,16 @@ export function isSlotTaken(doctorId, date, time) {
 export function initializeStorage() {
   const users = getUsers();
   if (users.length === 0) {
-    const allUsers = [...INITIAL_PATIENTS, ...INITIAL_DOCTORS];
+    const allUsers = [...INITIAL_PATIENTS, ...INITIAL_DOCTORS, ...INITIAL_ADMIN];
     localStorage.setItem(USERS_KEY, JSON.stringify(allUsers));
+    return;
+  }
+  // Ensure initial doctors and admin are always present (fix for when they were added later)
+  const existingIds = new Set(users.map((u) => u.id));
+  const missingUsers = [...INITIAL_DOCTORS, ...INITIAL_ADMIN].filter(
+    (u) => !existingIds.has(u.id)
+  );
+  if (missingUsers.length > 0) {
+    localStorage.setItem(USERS_KEY, JSON.stringify([...users, ...missingUsers]));
   }
 }
